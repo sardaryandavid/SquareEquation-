@@ -4,8 +4,6 @@
 void SolveSquareEquation(double a, double b, double c, double *x1, double *x2, int *roots_number);
 int equal(double a, double b);
 int isZero(double a);
-int isPositive(double a);
-int isNegative(double a);
 void print(double *x1, double *x2, int *roots_number);
 
 int main()
