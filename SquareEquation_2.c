@@ -91,7 +91,7 @@ int isZero(double a) {
     return equal(a, 0);
 }
 
-void print (double *x1, double *x2, int *roots_number) {
+void print(double *x1, double *x2, int *roots_number) {
     if (*roots_number == 0)
         printf("No roots");
     if (*roots_number == 1)
