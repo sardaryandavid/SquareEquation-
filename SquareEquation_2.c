@@ -8,15 +8,15 @@ int equal(double a, double b);
 int isZero(double a);
 void printRoots(double x1, double x2, int roots_number);
 
-void testSquareEquation1();
-void testSquareEquation2();
-void testSquareEquation3();
-void testSquareEquation4();
-void testSquareEquation5();
-void testSquareEquation6();
-void testSquareEquation7();
-void testSquareEquation8();
-void testSquareEquation9();
+void testSquareEquationAllCoeffsZero();
+void testSquareEquationAllCoeffsZeroExceptC();
+void testSquareEquationAllCoeffsZeroExceptB();
+void testSquareEquationAisZeroTheLastestTwoCoeffsIsNotZero();
+void testSquareEquationAllCoeffsZeroExceptA();
+void testSquareEquationsTheSquareRootOfPositiveNumber();
+void testSquareEquationDiscriminantIsNegative();
+void testSquareEquationDiscriminantIsZero();
+void testSquareEquationDiscriminantIsPositive();
 
 int main()
 {
@@ -29,15 +29,15 @@ int main()
 
     int roots_number = 0;
 
-    void testSquareEquation1();
-    void testSquareEquation2();
-    void testSquareEquation3();
-    void testSquareEquation4();
-    void testSquareEquation5();
-    void testSquareEquation6();
-    void testSquareEquation7();
-    void testSquareEquation8();
-    void testSquareEquation9();
+    void testSquareEquationAllCoeffsZero();
+    void testSquareEquationAllCoeffsZeroExceptC();
+    void testSquareEquationAllCoeffsZeroExceptB();
+    void testSquareEquationAisZeroTheLastestTwoCoeffsIsNotZero();
+    void testSquareEquationAllCoeffsZeroExceptA();
+    void testSquareEquationsTheSquareRootOfPositiveNumber();
+    void testSquareEquationDiscriminantIsNegative();
+    void testSquareEquationDiscriminantIsZero();
+    void testSquareEquationDiscriminantIsPositive();
 
     printf("This program solves equations of the following type: ax^2 + bx + c = 0\n");
     printf("Please, enter:\n");
@@ -67,9 +67,10 @@ int solveSquareEquation(double a, double b, double c,double *x1, double *x2) {
             else
                roots_number = 0;
         }
-        else
+        else {
             roots_number = 1;
             *x1 = *x2 = -c / b;
+        }
     }
 
     else {
@@ -127,56 +128,62 @@ void printRoots(double x1, double x2, int roots_number) {
     }
 }
 
-void testSquareEquation1() {
+void testSquareEquationAllCoeffsZero() {
     double x1 = 0;
     double x2 = 0;
-    assert(solveSquareEquation(0, 0, 0, &x1, &x2) == INF);
+    assert(solveSquareEquation(0, 0, 0, &x1, &x2) == INF && x1 == 0 && x2 == 0);
 }
 
-void testSquareEquation2() {
+void testSquareEquationAllCoeffsZeroExceptC() {
     double x1 = 0;
     double x2 = 0;
-    assert(solveSquareEquation(0, 0, 1, &x1, &x2) == 0);
+    assert(solveSquareEquation(0, 0, 1, &x1, &x2) == 0 && x1 == 0 && x2 == 0);
 }
 
-void testSquareEquation3() {
+void testSquareEquationAllCoeffsZeroExceptB() {
     double x1 = 0;
     double x2 = 0;
-    assert(solveSquareEquation(0, 1, 1, &x1, &x2) == 1);
+    assert(solveSquareEquation(0, 1, 0, &x1, &x2) == 0 && x1 == 0 && x2 == 0);
 }
 
-void testSquareEquation4() {
+void testSquareEquationAisZeroTheLastestTwoCoeffsIsNotZero() {
     double x1 = 0;
     double x2 = 0;
-    assert(solveSquareEquation(1, 0, 0, &x1, &x2) == 1);
+    assert(solveSquareEquation(0, 1, 1, &x1, &x2) == 1 && x1 == -1 && x2 == -1);
 }
 
-void testSquareEquation5() {
+void testSquareEquationAllCoeffsZeroExceptA() {
     double x1 = 0;
     double x2 = 0;
-    assert(solveSquareEquation(1, 0, 1, &x1, &x2) == 0);
+    assert(solveSquareEquation(1, 0, 0, &x1, &x2) == 1 && x1 == 0 && x2 == 0);
 }
 
-void testSquareEquation6() {
+void testSquareEquationsTheSquareRootOfNegativeNumber() {
     double x1 = 0;
     double x2 = 0;
-    assert(solveSquareEquation(1, 0, -1, &x1, &x2) == 2);
+    assert(solveSquareEquation(1, 0, 1, &x1, &x2) == 0 && x1 == 0 && x2 == 0);
 }
 
-void testSquareEquation7() {
+void testSquareEquationsTheSquareRootOfPositiveNumber() {
     double x1 = 0;
     double x2 = 0;
-    assert(solveSquareEquation(1, 1, 1, &x1, &x2) == 0);
+    assert(solveSquareEquation(1, 0, -1, &x1, &x2) == 2 && x1 == 1 && x2 == -1);
 }
 
-void testSquareEquation8() {
+void testSquareEquationDiscriminantIsNegative() {
     double x1 = 0;
     double x2 = 0;
-    assert(solveSquareEquation(1, 2, 1, &x1, &x2) == 1);
+    assert(solveSquareEquation(1, 1, 1, &x1, &x2) == 0 && x1 == 0 && x2 == 0);
 }
 
-void testSquareEquation9() {
+void testSquareEquationDiscriminantIsZero() {
     double x1 = 0;
     double x2 = 0;
-    assert(solveSquareEquation(1, -5, 4, &x1, &x2) == 2);
+    assert(solveSquareEquation(1, 2, 1, &x1, &x2) == 1 && x1 == -1 && x2 == -1);
+}
+
+void testSquareEquationDiscriminantIsPositive() {
+    double x1 = 0;
+    double x2 = 0;
+    assert(solveSquareEquation(1, -5, 4, &x1, &x2) == 2 && x1 == 4 && x2 == 1);
 }
