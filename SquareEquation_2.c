@@ -75,7 +75,7 @@ int SolveSquareEquation(double a, double b, double c,double *x1, double *x2) {
             if (discriminant >= -1e-6) {
                 *x1 = (-b + sqrt(discriminant))/ (2 * a);
                 *x2 = (-b - sqrt(discriminant))/ (2 * a);
-                if(!equal(*x1, *x2))
+                if(!isZero(discriminant))
                     roots_number = 2;
                 else
                     roots_number = 1;
@@ -86,12 +86,8 @@ int SolveSquareEquation(double a, double b, double c,double *x1, double *x2) {
     return roots_number;
 }
 
-int equal(double a, double b) {
-    return (fabs(a - b) <= 1e-6);
-}
-
 int isZero(double a) {
-    return equal(a, 0);
+    return (fabs(a) <= 1e-6);
 }
 
 void print_roots(double x1, double x2, int roots_number) {
