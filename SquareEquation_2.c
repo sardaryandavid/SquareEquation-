@@ -13,6 +13,7 @@ void testSquareEquationAllCoeffsZeroExceptC();
 void testSquareEquationAllCoeffsZeroExceptB();
 void testSquareEquationAisZeroTheLastestTwoCoeffsIsNotZero();
 void testSquareEquationAllCoeffsZeroExceptA();
+void testSquareEquationsTheSquareRootOfNegativeNumber();
 void testSquareEquationsTheSquareRootOfPositiveNumber();
 void testSquareEquationDiscriminantIsNegative();
 void testSquareEquationDiscriminantIsZero();
@@ -38,6 +39,7 @@ int main()
     void testSquareEquationDiscriminantIsNegative();
     void testSquareEquationDiscriminantIsZero();
     void testSquareEquationDiscriminantIsPositive();
+    void testSquareEquationsTheSquareRootOfNegativeNumber();
 
     printf("This program solves equations of the following type: ax^2 + bx + c = 0\n");
     printf("Please, enter:\n");
