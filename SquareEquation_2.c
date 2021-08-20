@@ -86,7 +86,7 @@ int SolveSquareEquation(double a, double b, double c,double *x1, double *x2, int
 }
 
 int equal(double a, double b) {
-    if ((a - b) >= -1e-6 && (a - b) <= 1e-6)
+    if (fabs(a - b) <= 1e-6)
         return 1;
     else
         return 0;
