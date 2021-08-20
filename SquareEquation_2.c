@@ -1,19 +1,18 @@
 #include <stdio.h>
 #define INF 1e7
 
-int SolveSquareEquation(double a, double b, double c, double *x1, double *x2, int *roots_number);
+void SolveSquareEquation(double a, double b, double c, double *x1, double *x2, int *roots_number);
 int equal(double a, double b);
 int isZero(double a);
 int isPositive(double a);
 int isNegative(double a);
-void print(int result, double *x1, double *x2, int *roots_number);
+void print(double *x1, double *x2, int *roots_number);
 
 int main()
 {
     double a = 0;
     double b = 0;
     double c = 0;
-    int result = 0;
     double x1 = 0;
     double x2 = 0;
     int roots_number = 0;
@@ -29,15 +28,14 @@ int main()
     printf("c = ");
     scanf("%lf", &c);
 
-    result = SolveSquareEquation(a, b, c, &x1, &x2, &roots_number);
+    SolveSquareEquation(a, b, c, &x1, &x2, &roots_number);
 
-    print(result, &x1, &x2, &roots_number);
+    print(&x1, &x2, &roots_number);
 
     return 0;
 }
 
-int SolveSquareEquation(double a, double b, double c,double *x1, double *x2, int *roots_number) {
-    int result = 0;
+void SolveSquareEquation(double a, double b, double c,double *x1, double *x2, int *roots_number) {
     if (isZero(a)) {
         if (isZero(b)) {
             if (isZero(c))
@@ -82,7 +80,6 @@ int SolveSquareEquation(double a, double b, double c,double *x1, double *x2, int
         }
 
     }
-   return result;
 }
 
 int equal(double a, double b) {
@@ -96,7 +93,7 @@ int isZero(double a) {
     return equal(a, 0);
 }
 
-void print (int result, double *x1, double *x2, int *roots_number) {
+void print (double *x1, double *x2, int *roots_number) {
     if (*roots_number == 0)
         printf("No roots");
     if (*roots_number == 1)
