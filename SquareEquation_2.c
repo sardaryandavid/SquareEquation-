@@ -1,22 +1,22 @@
 #include <stdio.h>
-#define MAXLINE 100
+#define INF 1e7
 
-int SolveSquareEquation(double a, double b, double c);
+int SolveSquareEquation(double a, double b, double c, double *x1, double *x2, int *roots_number);
 int equal(double a, double b);
 int isZero(double a);
 int isPositive(double a);
 int isNegative(double a);
-void print(int result);
-char *roots_number[MAXLINE];
-double x1 = 0;
-double x2 = 0;
+void print(int result, double *x1, double *x2, int *roots_number);
 
 int main()
 {
     double a = 0;
     double b = 0;
     double c = 0;
-    int result = 0; // was_result
+    int result = 0;
+    double x1 = 0;
+    double x2 = 0;
+    int roots_number = 0;
     printf("This program solve equation of the following type: ax^2 + bx + c = 0\n");
     printf("Please, enter:\n");
 
@@ -29,57 +29,56 @@ int main()
     printf("c = ");
     scanf("%lf", &c);
 
-    result = SolveSquareEquation(a, b, c);
+    result = SolveSquareEquation(a, b, c, &x1, &x2, &roots_number);
 
-    print(result);
+    print(result, &x1, &x2, &roots_number);
 
     return 0;
 }
 
-int SolveSquareEquation(double a, double b, double c) {
+int SolveSquareEquation(double a, double b, double c,double *x1, double *x2, int *roots_number) {
     int result = 0;
-    if(a == 0) {
-        if(b == 0) {
-            if(c == 0) {
-                *roots_number = "unlimited number of roots";
-                result = 1;
-            }
-            else {
-                *roots_number = "No roots in real numbers";
-                result = 1;
-            }
+    if (isZero(a)) {
+        if (isZero(b)) {
+            if (isZero(c))
+               *roots_number = INF;
+            else
+               *roots_number = 0;
         }
         else
-            x1 = x2 = -c / a;
+            *roots_number = 1;
+            *x1 = *x2 = -c / a;
     }
 
     else {
-        if(b == 0) {
-            if(c == 0)
-                x1 = x2 = 0;
+        if (isZero(b)) {
+            if (isZero(c)) {
+                *roots_number = 1;
+                *x1 = *x2 = 0;
+            }
             else {
-                if(c/a < 0) {
-                    *roots_number = "No roots";
-                    result = 1;
-                }
+                if (c / a < -1e-6)
+                    *roots_number = 0;
                 else {
-                    x1 = c / a;
-                    x2 = -c / a;
+                    *roots_number = 2;
+                    *x1 = c / a;
+                    *x2 = -c / a;
                 }
             }
         }
         else {
             double discriminant = b * b - 4 * a * c;
-            if(isZero(discriminant))
-                x1 = x2 = -b / (2 * a);
-            if(isNegative(discriminant))
-            {
-                *roots_number = "No roots";
-                result = 1;
+            if (isZero(discriminant)) {
+                *roots_number = 1;
+                *x1 = *x2 = -b / (2 * a);
             }
-            if(isPositive(discriminant))
-                x1 = (-b + sqrt(discriminant))/ (2 * a);
-                x2 = (-b - sqrt(discriminant))/ (2 * a);
+            if (discriminant < -1e-6)
+                *roots_number = 0;
+            if (discriminant > 1e-6) {
+                *roots_number = 2;
+                *x1 = (-b + sqrt(discriminant))/ (2 * a);
+                *x2 = (-b - sqrt(discriminant))/ (2 * a);
+            }
         }
 
     }
@@ -87,41 +86,23 @@ int SolveSquareEquation(double a, double b, double c) {
 }
 
 int equal(double a, double b) {
-    if((a - b) >= -1e-6 && (a - b) <= 1e-6)
+    if ((a - b) >= -1e-6 && (a - b) <= 1e-6)
         return 1;
     else
         return 0;
 }
 
 int isZero(double a) {
-    if(a <= 1e-6 && a >= -1e-6)
-        return 1;
-    else
-        return 0;
+    return equal(a, 0);
 }
 
-int isPositive(double a) {
-    if(a > 1e-6)
-        return 1;
-    else
-        return 0;
-}
-
-int isNegative(double a) {
-    if(a < -1e-6)
-        return 1;
-    else
-        return 0;
-}
-
-void print(int result) {
-    if(!result)
-        if(equal(x1, x2))
-            printf("%lf", x1);
-        else {
-            printf("x1 = %.6lf\n", x1);
-            printf("x2 = %.6lf\n", x2);
-        }
-    else
-        printf("%s", *roots_number);
+void print (int result, double *x1, double *x2, int *roots_number) {
+    if (*roots_number == 0)
+        printf("No roots");
+    if (*roots_number == 1)
+        printf("x1 = x2 = %lf", *x1);
+    if (*roots_number == 2)
+        printf("x1 = %lf, x2 = %lf", *x1, *x2);
+    if (*roots_number == INF)
+        printf("Unlimited number of roots");
 }
