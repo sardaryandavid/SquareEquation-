@@ -3,10 +3,20 @@
 
 #define INF -1
 
-int SolveSquareEquation(double a, double b, double c, double *x1, double *x2);
+int solveSquareEquation(double a, double b, double c, double *x1, double *x2);
 int equal(double a, double b);
 int isZero(double a);
-void print_roots(double x1, double x2, int roots_number);
+void printRoots(double x1, double x2, int roots_number);
+
+void testSquareEquation1();
+void testSquareEquation2();
+void testSquareEquation3();
+void testSquareEquation4();
+void testSquareEquation5();
+void testSquareEquation6();
+void testSquareEquation7();
+void testSquareEquation8();
+void testSquareEquation9();
 
 int main()
 {
@@ -18,6 +28,16 @@ int main()
     double x2 = 0;
 
     int roots_number = 0;
+
+    void testSquareEquation1();
+    void testSquareEquation2();
+    void testSquareEquation3();
+    void testSquareEquation4();
+    void testSquareEquation5();
+    void testSquareEquation6();
+    void testSquareEquation7();
+    void testSquareEquation8();
+    void testSquareEquation9();
 
     printf("This program solves equations of the following type: ax^2 + bx + c = 0\n");
     printf("Please, enter:\n");
@@ -31,14 +51,14 @@ int main()
     printf("c = ");
     scanf("%lf", &c);
 
-    roots_number = SolveSquareEquation(a, b, c, &x1, &x2);
+    roots_number = solveSquareEquation(a, b, c, &x1, &x2);
 
-    print_roots(x1, x2, roots_number);
+    printRoots(x1, x2, roots_number);
 
     return 0;
 }
 
-int SolveSquareEquation(double a, double b, double c,double *x1, double *x2) {
+int solveSquareEquation(double a, double b, double c,double *x1, double *x2) {
     int roots_number = 0;
     if (isZero(a)) {
         if (isZero(b)) {
@@ -90,7 +110,7 @@ int isZero(double a) {
     return (fabs(a) <= 1e-6);
 }
 
-void print_roots(double x1, double x2, int roots_number) {
+void printRoots(double x1, double x2, int roots_number) {
     switch(roots_number) {
     case 0:
         printf("No roots");
@@ -101,8 +121,62 @@ void print_roots(double x1, double x2, int roots_number) {
     case 2:
         printf("x1 = %lf, x2 = %lf", x1, x2);
         break;
-    case -1:
+    case INF:
         printf("Unlimited number of roots");
         break;
     }
+}
+
+void testSquareEquation1() {
+    double x1 = 0;
+    double x2 = 0;
+    assert(solveSquareEquation(0, 0, 0, &x1, &x2) == INF);
+}
+
+void testSquareEquation2() {
+    double x1 = 0;
+    double x2 = 0;
+    assert(solveSquareEquation(0, 0, 1, &x1, &x2) == 0);
+}
+
+void testSquareEquation3() {
+    double x1 = 0;
+    double x2 = 0;
+    assert(solveSquareEquation(0, 1, 1, &x1, &x2) == 1);
+}
+
+void testSquareEquation4() {
+    double x1 = 0;
+    double x2 = 0;
+    assert(solveSquareEquation(1, 0, 0, &x1, &x2) == 1);
+}
+
+void testSquareEquation5() {
+    double x1 = 0;
+    double x2 = 0;
+    assert(solveSquareEquation(1, 0, 1, &x1, &x2) == 0);
+}
+
+void testSquareEquation6() {
+    double x1 = 0;
+    double x2 = 0;
+    assert(solveSquareEquation(1, 0, -1, &x1, &x2) == 2);
+}
+
+void testSquareEquation7() {
+    double x1 = 0;
+    double x2 = 0;
+    assert(solveSquareEquation(1, 1, 1, &x1, &x2) == 0);
+}
+
+void testSquareEquation8() {
+    double x1 = 0;
+    double x2 = 0;
+    assert(solveSquareEquation(1, 2, 1, &x1, &x2) == 1);
+}
+
+void testSquareEquation9() {
+    double x1 = 0;
+    double x2 = 0;
+    assert(solveSquareEquation(1, -5, 4, &x1, &x2) == 2);
 }
