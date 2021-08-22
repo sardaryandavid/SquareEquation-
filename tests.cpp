@@ -4,12 +4,12 @@
 
 const double PRECISION = 1e-6;
 
-enum roots_number {INF = -1, noRoots = 0, oneRoot = 1, twoRoots = 2};
+enum roots_number {infRoots = -1, noRoots = 0, oneRoot = 1, twoRoots = 2};
 
 void testSquareEquationAllCoeffsZero() {
     double x1 = 0;
     double x2 = 0;
-    assert(solveSquareEquation(0, 0, 0, &x1, &x2) == INF && abs(x1) < PRECISION && abs(x2) < PRECISION);
+    assert(solveSquareEquation(0, 0, 0, &x1, &x2) == infRoots && abs(x1) < PRECISION && abs(x2) < PRECISION);
 }
 
 void testSquareEquationAllCoeffsZeroExceptC() {

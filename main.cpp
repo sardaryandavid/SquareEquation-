@@ -6,7 +6,7 @@
 
 const double PRECISION = 1e-6;
 
-enum roots_number {INF = -1, noRoots = 0, oneRoot = 1, twoRoots = 2};
+enum roots_number {infRoots = -1, noRoots = 0, oneRoot = 1, twoRoots = 2};
 
 void printRoots(double x1, double x2, int roots_number);
 
@@ -62,7 +62,7 @@ void printRoots(double x1, double x2, int roots_number) {
     case twoRoots:
         printf("x1 = %lf, x2 = %lf", x1, x2);
         break;
-    case INF:
+    case infRoots:
         printf("Unlimited number of roots");
         break;
     }
