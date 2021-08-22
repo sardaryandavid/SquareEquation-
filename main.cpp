@@ -53,16 +53,16 @@ void printRoots(double x1, double x2, int roots_number) {
     assert(std::isfinite(x1) && std::isfinite(x2) && std::abs(roots_number) <= 2);
 
     switch(roots_number) {
-    case 0:
+    case noRoots:
         printf("No roots");
         break;
-    case 1:
+    case oneRoot:
         printf("x1 = x2 = %lf", x1);
         break;
-    case 2:
+    case twoRoots:
         printf("x1 = %lf, x2 = %lf", x1, x2);
         break;
-    case -1:
+    case INF:
         printf("Unlimited number of roots");
         break;
     }

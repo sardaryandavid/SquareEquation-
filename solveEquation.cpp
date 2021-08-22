@@ -8,7 +8,6 @@ enum roots_number {INF = -1, noRoots = 0, oneRoot = 1, twoRoots = 2};
 int isZero(double a);
 
 int solveSquareEquation(double a, double b, double c, double *x1, double *x2) {
-
     assert(x1 != nullptr && x2 != nullptr);
     assert(std::isfinite(a) && std::isfinite(b) && std::isfinite(b));
 
