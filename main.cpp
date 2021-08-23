@@ -4,24 +4,24 @@
 #include "solveEquation.h"
 #include "tests.h"
 
-const double PRECISION = 1e-6;
-
 enum roots_number {infRoots = -1, noRoots = 0, oneRoot = 1, twoRoots = 2};
 
 void printRoots(double x1, double x2, int roots_number);
 
 int main()
 {
-    testSquareEquationAllCoeffsZero();
-    testSquareEquationAllCoeffsZeroExceptC();
-    testSquareEquationAllCoeffsZeroExceptB();
-    testSquareEquationAisZeroTheLastestTwoCoeffsIsNotZero();
-    testSquareEquationAllCoeffsZeroExceptA();
-    testSquareEquationsTheSquareRootOfPositiveNumber();
-    testSquareEquationDiscriminantIsNegative();
-    testSquareEquationDiscriminantIsZero();
-    testSquareEquationDiscriminantIsPositive();
-    testSquareEquationsTheSquareRootOfNegativeNumber();
+    #ifdef TESTS
+        testSquareEquationAllCoeffsZero();
+        testSquareEquationAllCoeffsZeroExceptC();
+        testSquareEquationAllCoeffsZeroExceptB();
+        testSquareEquationAisZeroTheLastestTwoCoeffsIsNotZero();
+        testSquareEquationAllCoeffsZeroExceptA();
+        testSquareEquationsTheSquareRootOfPositiveNumber();
+        testSquareEquationDiscriminantIsNegative();
+        testSquareEquationDiscriminantIsZero();
+        testSquareEquationDiscriminantIsPositive();
+        testSquareEquationsTheSquareRootOfNegativeNumber();
+    #endif
 
     printf("This program solves equations of the following type: ax^2 + bx + c = 0\n");
     printf("Please, enter:\n");

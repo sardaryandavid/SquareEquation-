@@ -2,7 +2,7 @@
 #include <cmath>
 #include "solveEquation.h"
 
-const double PRECISION = 1e-6;
+double PRECISION = 1e-6;
 
 enum roots_number {infRoots = -1, noRoots = 0, oneRoot = 1, twoRoots = 2};
 
@@ -66,3 +66,4 @@ int isZero(double a) {
 
     return (fabs(a) <= PRECISION);
 }
+
