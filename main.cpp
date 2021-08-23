@@ -1,8 +1,8 @@
 #include <cstdio>
 #include <cassert>
 #include <cmath>
-#include "tests.h"
 #include "solveEquation.h"
+#include "tests.h"
 
 const double PRECISION = 1e-6;
 
@@ -53,18 +53,21 @@ void printRoots(double x1, double x2, int roots_number) {
     assert(std::isfinite(x1) && std::isfinite(x2) && std::abs(roots_number) <= 2);
 
     switch(roots_number) {
-    case noRoots:
-        printf("No roots");
-        break;
-    case oneRoot:
-        printf("x1 = x2 = %lf", x1);
-        break;
-    case twoRoots:
-        printf("x1 = %lf, x2 = %lf", x1, x2);
-        break;
-    case infRoots:
-        printf("Unlimited number of roots");
-        break;
+        case noRoots:
+            printf("No roots\n");
+            break;
+        case oneRoot:
+            printf("x1 = x2 = %lf\n", x1);
+            break;
+        case twoRoots:
+            printf("x1 = %lf, x2 = %lf\n", x1, x2);
+            break;
+        case infRoots:
+            printf("Unlimited number of roots\n");
+            break;
+        default:
+            printf("Something went wrong\n");
+            break;
     }
 }
 

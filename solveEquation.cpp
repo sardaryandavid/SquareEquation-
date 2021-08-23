@@ -1,12 +1,12 @@
 #include <cassert>
 #include <cmath>
+#include "solveEquation.h"
 
 const double PRECISION = 1e-6;
 
 enum roots_number {infRoots = -1, noRoots = 0, oneRoot = 1, twoRoots = 2};
 
 int isZero(double a);
-int solveLinearEquation(double a, double b, double *x);
 
 int solveSquareEquation(double a, double b, double c, double *x1 = 0, double *x2 = 0) {
     assert(x1 != nullptr && x2 != nullptr);
@@ -38,25 +38,27 @@ int solveSquareEquation(double a, double b, double c, double *x1 = 0, double *x2
         return noRoots;
     }
 
-    *x1 = (-b + sqrt(discriminant))/ (2 * a);
-    *x2 = (-b - sqrt(discriminant))/ (2 * a);
-    if (isZero(discriminant)) {
+    if(isZero(discriminant)) {
+        *x1 = *x2 = -b / 2 * a;
         return oneRoot;
     }
 
+    *x1 = (-b + sqrt(discriminant))/ (2 * a);
+    *x2 = (-b - sqrt(discriminant))/ (2 * a);
     return twoRoots;
 }
 
 int solveLinearEquation(double a, double b, double *x) {
     if(a == 0) {
-        if(b == 0)
+        if(b == 0) {
             return infRoots;
+        }
 
         return noRoots;
     }
 
     *x = -b / a;
-    return 1;
+    return oneRoot;
 }
 
 int isZero(double a) {

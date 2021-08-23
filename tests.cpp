@@ -1,5 +1,6 @@
 #include <cassert>
 #include <cmath>
+#include "tests.h"
 #include "solveEquation.h"
 
 const double PRECISION = 1e-6;
