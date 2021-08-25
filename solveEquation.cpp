@@ -1,16 +1,16 @@
 #include <cassert>
-#include <cmath>
+#include <math.h>
+#include <stdio.h>
 #include "solveEquation.h"
 
-double PRECISION = 1e-6;
+const double PRECISION = 1e-6;
 
-enum roots_number {infRoots = -1, noRoots = 0, oneRoot = 1, twoRoots = 2};
-
-int isZero(double a);
-
-int solveSquareEquation(double a, double b, double c, double *x1 = 0, double *x2 = 0) {
-    assert(x1 != nullptr && x2 != nullptr);
-    assert(std::isfinite(a) && std::isfinite(b) && std::isfinite(b));
+int solveSquareEquation(double a, double b, double c, double *x1, double *x2) {
+    assert(x1 != nullptr);
+    assert(x2 != nullptr);
+    assert(isfinite(a));
+    assert(isfinite(b));
+    assert(isfinite(b));
 
     if (isZero(a)) {
         int roots_number = solveLinearEquation(b, c, x1);
@@ -29,7 +29,7 @@ int solveSquareEquation(double a, double b, double c, double *x1 = 0, double *x2
         }
 
         *x1 = -c / a;
-        *x2 = c / a;
+        *x2 = +c / a;
         return twoRoots;
     }
 
@@ -45,12 +45,13 @@ int solveSquareEquation(double a, double b, double c, double *x1 = 0, double *x2
 
     *x1 = (-b + sqrt(discriminant))/ (2 * a);
     *x2 = (-b - sqrt(discriminant))/ (2 * a);
+
     return twoRoots;
 }
 
 int solveLinearEquation(double a, double b, double *x) {
-    if(a == 0) {
-        if(b == 0) {
+    if(isZero(a)) {
+        if(isZero(b)) {
             return infRoots;
         }
 
@@ -58,16 +59,14 @@ int solveLinearEquation(double a, double b, double *x) {
     }
 
     *x = -b / a;
+
     return oneRoot;
 }
 
-/**
- *   This function checks whether the number is zero
- *   @param a - the number that is compared with zero
-*/
-
 int isZero(double a) {
-    assert(std::isfinite(a));
+    if(isinf(a)) {
+        return 0;
+    }
 
     return (fabs(a) <= PRECISION);
 }
