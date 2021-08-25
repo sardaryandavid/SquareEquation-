@@ -4,7 +4,15 @@
 #include "solveEquation.h"
 #include "tests.h"
 
-enum roots_number {infRoots = -1, noRoots = 0, oneRoot = 1, twoRoots = 2};
+enum roots_number {infRoots, noRoots, oneRoot, twoRoots};
+
+/**
+ *  This function prints the roots of the equation (or their number)
+ *
+ *  @param x_1 - the root of the equation
+ *  @param x_2 - the root of the equation
+ *  @param roots_number - number of the roots
+*/
 
 void printRoots(double x1, double x2, int roots_number);
 
@@ -48,6 +56,8 @@ int main()
 
     return 0;
 }
+
+
 
 void printRoots(double x1, double x2, int roots_number) {
     assert(std::isfinite(x1) && std::isfinite(x2) && std::abs(roots_number) <= 2);

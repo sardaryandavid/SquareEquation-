@@ -61,6 +61,11 @@ int solveLinearEquation(double a, double b, double *x) {
     return oneRoot;
 }
 
+/**
+ *   This function checks whether the number is zero
+ *   @param a - the number that is compared with zero
+*/
+
 int isZero(double a) {
     assert(std::isfinite(a));
 

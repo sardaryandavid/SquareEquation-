@@ -3,6 +3,16 @@
 
 extern int PRECISION;
 
+/**
+ *   Tests for the program
+ *   These tests check whether the program gives the correct answers in particular cases
+ *   If the program gives the correct answer nothing will happen
+ *   Otherwise, there will be an error message
+ *
+ *   @return if the program passed all the tests, nothing will happen. Otherwise, an error
+ *           message will be displayed
+*/
+
 void testSquareEquationAllCoeffsZero();
 void testSquareEquationAllCoeffsZeroExceptC();
 void testSquareEquationAllCoeffsZeroExceptB();
