@@ -25,4 +25,14 @@ void testSquareEquationDiscriminantIsNegative();
 void testSquareEquationDiscriminantIsZero();
 void testSquareEquationDiscriminantIsPositive();
 
+//! Second Version
+void startAllUnitTestsForSquareEquation();
+
+void unitTestSquareEquation(
+    const char* testName,
+    const double a, const double b, const double c,
+    const int rootsNumberRef,
+    const double x1Expected, const double x2Expected
+);
+
 #endif // TESTS_H_INCLUDED

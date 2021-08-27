@@ -1,7 +1,7 @@
 #ifndef SOLVEEQUATION_H_INCLUDED
 #define SOLVEEQUATION_H_INCLUDED
 
-enum roots_number {
+enum possible_roots_number {
     infRoots = -1,
     noRoots,
     oneRoot,
@@ -9,7 +9,7 @@ enum roots_number {
 };
 
 /**
- *   This program solves quadratic equation \n
+ *   This function solves quadratic equation \n
  *   The function returns the number of roots of the quadratic equation \n
  *   And also finds the roots of the quadratic equation. \n
  *
@@ -20,7 +20,7 @@ enum roots_number {
  *   @param [out] $x_2$ - root of the equation. The program changes the value at the address
  *   @return The number of the roots
 */
-int solveSquareEquation(double a, double b, double c, double *x1, double *x2);
+int solveSquareEquation(const double a, const double b, const double c, double *x1, double *x2);
 
 /**
  *   This function solves linear equation
@@ -29,13 +29,13 @@ int solveSquareEquation(double a, double b, double c, double *x1, double *x2);
  *   @param [out] x - root of the equation. The program changes the value at the address
  *   @return The number of the roots
 */
-int solveLinearEquation(double a, double b, double *x);
+int solveLinearEquation(const double a, const double b, double *x);
 
 /**
  *   This function checks whether the number is zero
  *   @param [in] a - the number that is compared with zero
  *   @return if a is zero the program returns 1, else 0
 */
-int isZero(double a);
+int isZero(const double value);
 
 #endif // SOLVEEQUATION_H_INCLUDED

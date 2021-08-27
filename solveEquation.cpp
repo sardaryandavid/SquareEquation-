@@ -5,12 +5,14 @@
 
 const double PRECISION = 1e-6;
 
-int solveSquareEquation(double a, double b, double c, double *x1, double *x2) {
+int solveSquareEquation(const double a, const double b, const double c, double *x1, double *x2) { //TODO
     assert(x1 != nullptr);
     assert(x2 != nullptr);
+    assert(x1 != x2);
+
     assert(isfinite(a));
     assert(isfinite(b));
-    assert(isfinite(b));
+    assert(isfinite(c));
 
     if (isZero(a)) {
         int roots_number = solveLinearEquation(b, c, x1);
@@ -29,8 +31,14 @@ int solveSquareEquation(double a, double b, double c, double *x1, double *x2) {
         }
 
         *x1 = -c / a;
-        *x2 = +c / a;
+        *x2 =  c / a;
         return twoRoots;
+    }
+
+    if (c == 0) {
+        *x1 = 0;
+        int rootsNumber = solveLinearEquation(a, b, x2);
+        return rootsNumber + oneRoot;
     }
 
     double discriminant = b * b - 4 * a * c;
@@ -38,8 +46,8 @@ int solveSquareEquation(double a, double b, double c, double *x1, double *x2) {
         return noRoots;
     }
 
-    if(isZero(discriminant)) {
-        *x1 = *x2 = -b / 2 * a;
+    if (isZero(discriminant)) {
+        *x1 = *x2 = -b / (2 * a);
         return oneRoot;
     }
 
@@ -49,9 +57,9 @@ int solveSquareEquation(double a, double b, double c, double *x1, double *x2) {
     return twoRoots;
 }
 
-int solveLinearEquation(double a, double b, double *x) {
-    if(isZero(a)) {
-        if(isZero(b)) {
+int solveLinearEquation(const double a, const double b, double *x) {
+    if (isZero(a)) {
+        if (isZero(b)) {
             return infRoots;
         }
 
@@ -63,11 +71,8 @@ int solveLinearEquation(double a, double b, double *x) {
     return oneRoot;
 }
 
-int isZero(double a) {
-    if(isinf(a)) {
-        return 0;
-    }
-
-    return (fabs(a) <= PRECISION);
+int isZero(const double value) {
+    return (fabs(value) <= PRECISION);
 }
+
 

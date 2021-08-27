@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <cassert>
 #include <math.h>
-
+#include <ostream>
 #include "solveEquation.h"
 #include "tests.h"
 
@@ -24,15 +24,20 @@ void printRoots(const double x1, const double x2, const int roots_number);
 
 void launchProgram();
 
+///**
+// *   This function read the coefficient
+// *   If you entered coefficient incorrectly this function ask you enter the symbol correctly
+//*/
+//void readCoefficient(const char coefficientSymbol, double *coefficient);
+
 int main()
 {
-    #ifdef TESTS
-        printf("Start testing\n");
-        startAllTestsForSquareEquation();
-        printf("All tests passed\n");
-    #else
-        launchProgram();
-    #endif
+#ifdef TESTS
+    printf("Start testing!");
+    startAllUnitTestsForSquareEquation();
+#else
+    launchProgram();
+#endif
 
     return 0;
 }
@@ -65,24 +70,39 @@ void launchProgram() {
 void printRoots(const double x1, const double x2, const int roots_number) {
     assert(isfinite(x1));
     assert(isfinite(x2));
-    assert(abs(roots_number) <= 2);
 
     switch(roots_number) {
         case noRoots:
             printf("No roots\n");
             break;
         case oneRoot:
-            printf("x1 = %lf\n", x1);
+            printf("x = %lf\n", x1);
             break;
         case twoRoots:
             printf("x1 = %lf, x2 = %lf\n", x1, x2);
             break;
         case infRoots:
-            printf("Unlimited number of roots, %lf, %lf\n");
+            printf("Unlimited number of roots\n");
             break;
         default:
-            printf("Something went wrong\n");
+            printf("Error. Wrong number of roots\n");
             break;
     }
 }
 
+//void readCoefficient(const char coefficientSymbol, double *coefficient) {
+//    printf("%c = ", coefficientSymbol);
+//    int success = 0;
+//    while(success == 0) {
+//        if (scanf("%lf", coefficient) == 0) {
+//            printf("Please, enter the number:\n");
+//            printf("%c = ", coefficientSymbol);
+//            fflush(stdin);
+//        }
+//        else {
+//            while((c != getchar()) == '\n') {
+//            }
+//            success += 1;
+//        }
+//    }
+//}
