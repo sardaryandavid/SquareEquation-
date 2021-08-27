@@ -1,11 +1,10 @@
 #include <cstdio>
 #include <cassert>
 #include <math.h>
-#include <ostream>
 #include "solveEquation.h"
 #include "tests.h"
 
-#define TESTS
+//#define TESTS
 
 /**
  *  This function prints the roots of the equation (or their number)
@@ -14,26 +13,24 @@
  *  @param x_2 - the root of the equation
  *  @param roots_number - number of the roots
 */
-
 void printRoots(const double x1, const double x2, const int roots_number);
 
 /**
  *   This function reads data and prints answer
  *   @return The roots of the equation
 */
-
 void launchProgram();
 
-///**
-// *   This function read the coefficient
-// *   If you entered coefficient incorrectly this function ask you enter the symbol correctly
-//*/
-//void readCoefficient(const char coefficientSymbol, double *coefficient);
+/**
+ *   This function read coefficient
+ *   @param [out] - change coefficient by address
+*/
+void readCoefficient(const char symbol, double *coefficient);
 
 int main()
 {
 #ifdef TESTS
-    printf("Start testing!");
+    printf("Start testing!\n");
     startAllUnitTestsForSquareEquation();
 #else
     launchProgram();
@@ -50,14 +47,18 @@ void launchProgram() {
     double b = 0;
     double c = 0;
 
-    printf("a = ");
-    scanf("%lf", &a);
+    readCoefficient('a', &a);
+    readCoefficient('b', &b);
+    readCoefficient('c', &c);
 
-    printf("b = ");
-    scanf("%lf", &b);
-
-    printf("c = ");
-    scanf("%lf", &c);
+//    printf("a = "); //! TODO
+//    scanf("%lf", &a);
+//
+//    printf("b = ");
+//    scanf("%lf", &b);
+//
+//    printf("c = ");
+//    scanf("%lf", &c);
 
     double x1 = 0;
     double x2 = 0;
@@ -75,34 +76,48 @@ void printRoots(const double x1, const double x2, const int roots_number) {
         case noRoots:
             printf("No roots\n");
             break;
+
         case oneRoot:
             printf("x = %lf\n", x1);
             break;
+
         case twoRoots:
             printf("x1 = %lf, x2 = %lf\n", x1, x2);
             break;
+
         case infRoots:
             printf("Unlimited number of roots\n");
             break;
+
         default:
-            printf("Error. Wrong number of roots\n");
+            printf("Error. Wrong number of roots: %d\n", roots_number);
             break;
     }
 }
 
-//void readCoefficient(const char coefficientSymbol, double *coefficient) {
-//    printf("%c = ", coefficientSymbol);
-//    int success = 0;
-//    while(success == 0) {
-//        if (scanf("%lf", coefficient) == 0) {
-//            printf("Please, enter the number:\n");
-//            printf("%c = ", coefficientSymbol);
-//            fflush(stdin);
-//        }
-//        else {
-//            while((c != getchar()) == '\n') {
-//            }
-//            success += 1;
-//        }
-//    }
-//}
+void readCoefficient(const char symbol, double *coefficient) {
+    int success = 0;
+    char readSymbol;
+
+    printf("%c = ", symbol);
+
+    while(success == 0) {
+        if (scanf("%lf", coefficient) == 0) {
+            fflush(stdin);
+            printf("Please, enter the number:\n");
+            printf("%c = ", symbol);
+        }
+
+        else {
+            while((readSymbol = getchar()) != '\n') {
+                if(!('readSymbol' >= 48 && 'readSymbol' <= 57)) {
+                    printf("Please, enter the number:\n");
+                    printf("%c = ", symbol);
+                    fflush(stdin);
+                }
+            }
+            success += 1;
+        }
+    }
+}
+

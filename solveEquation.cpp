@@ -5,7 +5,7 @@
 
 const double PRECISION = 1e-6;
 
-int solveSquareEquation(const double a, const double b, const double c, double *x1, double *x2) { //TODO
+int solveSquareEquation(const double a, const double b, const double c, double *x1, double *x2) {
     assert(x1 != nullptr);
     assert(x2 != nullptr);
     assert(x1 != x2);
@@ -15,9 +15,8 @@ int solveSquareEquation(const double a, const double b, const double c, double *
     assert(isfinite(c));
 
     if (isZero(a)) {
-        int roots_number = solveLinearEquation(b, c, x1);
-        *x2 = *x1;
-        return roots_number;
+        int rootsNumber = solveLinearEquation(b, c, x1);
+        return rootsNumber;
     }
 
     if (isZero(b)) {
@@ -38,6 +37,10 @@ int solveSquareEquation(const double a, const double b, const double c, double *
     if (c == 0) {
         *x1 = 0;
         int rootsNumber = solveLinearEquation(a, b, x2);
+        if(rootsNumber == infRoots) {
+            return rootsNumber;
+        }
+
         return rootsNumber + oneRoot;
     }
 
