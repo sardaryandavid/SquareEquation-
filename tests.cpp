@@ -8,7 +8,7 @@ void startAllUnitTestsForSquareEquation() {
     unitTestSquareEquation("testSquareEquationAllCoeffsZero"                       , 0, 0, 0 , infRoots, 0 , 0);
     unitTestSquareEquation("testSquareEquationAllCoeffsZeroExceptC"                , 0, 0, 1 , noRoots , 0 , 0);
     unitTestSquareEquation("testSquareEquationAllCoeffsZeroExceptB"                , 0, 1, 0 , oneRoot , 0 , 0);
-    unitTestSquareEquation("testSquareEquationAisZeroTheLastestTwoCoeffsIsNotZero" , 0, 1, 1 , oneRoot , -1, -1);
+    unitTestSquareEquation("testSquareEquationAisZeroTheLastestTwoCoeffsIsNotZero" , 0, 1, 1 , oneRoot , -1, 0);
     unitTestSquareEquation("testSquareEquationAllCoeffsZeroExceptA"                , 1, 0, 0 , oneRoot , 0 , 0);
     unitTestSquareEquation("testSquareEquationsTheSquareRootOfNegativeNumber"      , 1, 0, 1 , noRoots , 0 , 0);
     unitTestSquareEquation("testSquareEquationsTheSquareRootOfPositiveNumber"      , 1, 0, -1, twoRoots, 1 , -1);

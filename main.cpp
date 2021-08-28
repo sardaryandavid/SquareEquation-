@@ -109,6 +109,7 @@ void readCoefficient(const char symbol, double *coefficient) {
                     printMessageEnterAgain(symbol);
                 }
             }
+
             success += 1;
         }
     }
