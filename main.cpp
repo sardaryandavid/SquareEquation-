@@ -51,7 +51,7 @@ void launchProgram() {
     readCoefficient('b', &b);
     readCoefficient('c', &c);
 
-//    printf("a = "); //! TODO
+//    printf("a = ");
 //    scanf("%lf", &a);
 //
 //    printf("b = ");
