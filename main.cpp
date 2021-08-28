@@ -110,7 +110,7 @@ void readCoefficient(const char symbol, double *coefficient) {
 
         else {
             while((readSymbol = getchar()) != '\n') {
-                if(!('readSymbol' >= 48 && 'readSymbol' <= 57)) {
+                if(!(readSymbol >= '0' && readSymbol <= '9')) {
                     printf("Please, enter the number:\n");
                     printf("%c = ", symbol);
                     fflush(stdin);
