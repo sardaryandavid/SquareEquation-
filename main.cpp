@@ -27,6 +27,12 @@ void launchProgram();
 */
 void readCoefficient(const char symbol, double *coefficient);
 
+/**
+ *   This function print the message
+ *   It asks enter coefficients again
+*/
+void printMessageEnterAgain(const char symbol);
+
 int main()
 {
 #ifdef TESTS
@@ -50,15 +56,6 @@ void launchProgram() {
     readCoefficient('a', &a);
     readCoefficient('b', &b);
     readCoefficient('c', &c);
-
-//    printf("a = ");
-//    scanf("%lf", &a);
-//
-//    printf("b = ");
-//    scanf("%lf", &b);
-//
-//    printf("c = ");
-//    scanf("%lf", &c);
 
     double x1 = 0;
     double x2 = 0;
@@ -101,23 +98,25 @@ void readCoefficient(const char symbol, double *coefficient) {
 
     printf("%c = ", symbol);
 
-    while(success == 0) {
+    while (success == 0) {
         if (scanf("%lf", coefficient) == 0) {
-            fflush(stdin);
-            printf("Please, enter the number:\n");
-            printf("%c = ", symbol);
+            printMessageEnterAgain(symbol);
         }
 
         else {
-            while((readSymbol = getchar()) != '\n') {
-                if(!(readSymbol >= '0' && readSymbol <= '9')) {
-                    printf("Please, enter the number:\n");
-                    printf("%c = ", symbol);
-                    fflush(stdin);
+            while ((readSymbol = getchar()) != '\n') {
+                if (!(readSymbol >= '0' && readSymbol <= '9')) {
+                    printMessageEnterAgain(symbol);
                 }
             }
             success += 1;
         }
     }
+}
+
+void printMessageEnterAgain(const char symbol) {
+    fflush(stdin);
+    printf("Please, enter the number:\n");
+    printf("%c = ", symbol);
 }
 
